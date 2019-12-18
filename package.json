@@ -16,5 +16,13 @@
   },
   "devDependencies": {
     "jshint": "^2.11.0-rc1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JakeG-9191/vidley-video-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JakeG-9191/vidley-video-app/issues"
+  },
+  "homepage": "https://github.com/JakeG-9191/vidley-video-app#readme"
 }
