@@ -16,6 +16,10 @@ const genres = [
   }
 ];
 
+router.get('/', (req, res) => {
+  res.send(genres);
+});
+
 router.post('/', (req, res) => {
   const { error } = validateGenre(req.body);
   if (error) return res.status(400).send(error.details[0].message);
