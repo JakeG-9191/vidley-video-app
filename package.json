@@ -10,11 +10,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "config": "^3.2.4",
+    "debug": "^4.1.1",
     "express": "^4.17.1",
     "helmet": "^3.21.2",
     "joi": "^14.3.1",
     "mongoose": "^5.8.1",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "pug": "^2.0.4"
   },
   "devDependencies": {
     "jshint": "^2.11.0-rc1"

@@ -1,4 +1,6 @@
 const Joi = require('joi');
+const config = require('config');
+const debug = require('debug')('app:startup');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const express = require('express');
@@ -7,11 +9,27 @@ const auth = require('./authenticate');
 
 const app = express();
 
+app.set('view engine', 'pug');
+app.set('views', './views'); // all templates should be in views in this case
+
+// Config
+// console.log(`Application Name: ${config.get('name')}`);
+// console.log(`Mail Server: ${config.get('mail.host')}`);
+// console.log(`Mail Password: ${config.get('mail.password')}`);
+
+// Built In Express Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+
+// 3rd Party Middleware
 app.use(helmet());
-app.use(morgan('tiny'));
+if (app.get('env') === 'development') {
+  app.use(morgan('tiny'));
+  debug('Morgan Enabled...');
+}
+
+// Custom Middleware
 app.use(logger);
 app.use(auth);
 
