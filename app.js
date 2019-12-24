@@ -8,6 +8,12 @@ const logger = require('./middleware/logger');
 const auth = require('./middleware/authenticate');
 const genres = require('./routes/genres');
 const home = require('./routes/home');
+const mongoose = require('mongoose');
+
+mongoose
+  .connect('mongodb://localhost/vidleyApp')
+  .then(() => console.log('Connected to MongoDB...'))
+  .catch(err => console.error('Could not connect to MongoDB...', err));
 
 const app = express();
 
