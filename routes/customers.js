@@ -12,12 +12,14 @@ const customerSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    minlength: 5,
+    minlength: 2,
     maxlength: 50
   },
   phone: {
-    type: Number,
-    required: true
+    type: String,
+    required: true,
+    minlength: 10,
+    maxlength: 12
   }
 });
 
@@ -29,7 +31,7 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const { error } = validateGenre(req.body);
+  const { error } = validateCustomer(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
   let customer = new Customer({
@@ -42,7 +44,7 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
-  const { error } = validateGenre(req.body);
+  const { error } = validateCustomer(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
   const customer = await Customer.findByIdAndUpdate(
@@ -81,13 +83,17 @@ router.get('/:id', async (req, res) => {
   res.send(customer);
 });
 
-function validateGenre(customer) {
+function validateCustomer(customer) {
   const schema = {
     isGold: Joi.boolean().required(),
     name: Joi.string()
-      .min(3)
+      .min(2)
+      .max(50)
       .required(),
-    phone: Joi.number().required()
+    phone: Joi.string()
+      .min(10)
+      .max(12)
+      .required()
   };
   return Joi.validate(customer, schema);
 }
