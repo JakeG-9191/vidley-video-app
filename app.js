@@ -1,4 +1,3 @@
-const Joi = require('joi');
 const config = require('config');
 const debug = require('debug')('app:startup');
 const helmet = require('helmet');
