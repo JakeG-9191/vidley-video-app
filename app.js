@@ -1,3 +1,5 @@
+const Joi = require('joi');
+Joi.objectId = require('joi-objectid')(Joi);
 const config = require('config');
 const debug = require('debug')('app:startup');
 const helmet = require('helmet');
