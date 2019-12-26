@@ -6,6 +6,7 @@ const express = require('express');
 const logger = require('./middleware/logger');
 const auth = require('./middleware/authenticate');
 const genres = require('./routes/genres');
+const movies = require('./routes/movies');
 const customers = require('./routes/customers');
 const home = require('./routes/home');
 const mongoose = require('mongoose');
@@ -33,6 +34,7 @@ app.use(express.static('public'));
 // Router
 app.use('/api/genres', genres);
 app.use('/api/customers', customers);
+app.use('/api/movies', movies);
 app.use('/', home);
 
 // 3rd Party Middleware
