@@ -2,8 +2,11 @@ const { Rental, validate } = require('../models/rental');
 const { Movie } = require('../models/movie');
 const { Customer } = require('../models/customer');
 const mongoose = require('mongoose');
+const Fawn = require('fawn');
 const express = require('express');
 const router = express.Router();
+
+Fawn.init(mongoose);
 
 router.get('/', async (req, res) => {
   const rentals = await Rental.find().sort('-dateOut');
@@ -36,12 +39,24 @@ router.post('/', async (req, res) => {
     }
   });
 
-  rental = await rental.save();
+  try {
+    new Fawn.Task()
+      // save the name of collection, then save name of new object
+      .save('rentals', rental)
+      // update a second collection
+      .update(
+        'movies',
+        { _id: movie._id },
+        {
+          $inc: { numberInStock: -1 }
+        }
+      )
+      .run();
 
-  movie.numberInStock--;
-  movie.save();
-
-  res.send(rental);
+    res.send(rental);
+  } catch (ex) {
+    res.status(500).send('Server Side Error');
+  }
 });
 
 // router.put('/:id', async (req, res) => {
@@ -84,12 +99,13 @@ router.post('/', async (req, res) => {
 //   res.send(movie);
 // });
 
-// router.get('/:id', async (req, res) => {
-//   const movie = await Movie.findById(req.params.id);
+router.get('/:id', async (req, res) => {
+  const rental = await Rental.findById(req.params.id);
 
-//   if (!movie) return res.status(404).send('This movie does not exist');
+  if (!rental)
+    return res.status(404).send('This rental does not exist in the system');
 
-//   res.send(movie);
-// });
+  res.send(rental);
+});
 
 module.exports = router;
