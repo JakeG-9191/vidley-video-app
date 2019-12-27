@@ -11,6 +11,7 @@ const genres = require('./routes/genres');
 const movies = require('./routes/movies');
 const rentals = require('./routes/rentals');
 const customers = require('./routes/customers');
+const registers = require('./routes/registers');
 const home = require('./routes/home');
 const mongoose = require('mongoose');
 
@@ -39,6 +40,7 @@ app.use('/api/genres', genres);
 app.use('/api/customers', customers);
 app.use('/api/movies', movies);
 app.use('/api/rentals', rentals);
+app.use('/api/users', registers);
 app.use('/', home);
 
 // 3rd Party Middleware
