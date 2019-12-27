@@ -14,6 +14,11 @@ const auth = require('./routes/auth');
 const home = require('./routes/home');
 const mongoose = require('mongoose');
 
+if (!config.get('jwtPrivate')) {
+  console.error('FATAL ERROR: jwtPrivate is not defined');
+  process.exit(1);
+}
+
 mongoose
   .connect('mongodb://localhost/vidleyApp')
   .then(() => console.log('Connected to MongoDB...'))
@@ -25,7 +30,7 @@ app.set('view engine', 'pug');
 app.set('views', './views'); // all templates should be in views in this case
 
 // Config
-console.log(`Application Name: ${config.get('name')}`);
+// console.log(`Application Name: ${config.get('name')}`);
 // console.log(`Mail Server: ${config.get('mail.host')}`);
 // console.log(`Mail Password: ${config.get('mail.password')}`);
 
