@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const { Register, validate } = require('../models/register');
 const mongoose = require('mongoose');
 const express = require('express');
@@ -15,13 +16,10 @@ router.post('/', async (req, res) => {
   let register = await Register.findOne({ email: req.body.email });
   if (register) return res.status(400).send('This user has already registered');
 
-  register = new Register({
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password
-  });
+  register = new Register(_.pick(req.body, ['name', 'email', 'password']));
   await register.save();
-  res.send(register);
+
+  res.send(_.pick(register, ['id', 'name', 'email']));
 });
 
 router.put('/:id', async (req, res) => {
