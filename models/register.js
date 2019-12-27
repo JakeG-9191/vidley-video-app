@@ -12,13 +12,14 @@ const registerSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    maxlength: 50
+    minlength: 6,
+    maxlength: 255
   },
   password: {
     type: String,
     required: true,
     minlength: 6,
-    maxlength: 25
+    maxlength: 1024
   }
 });
 
@@ -31,11 +32,13 @@ function validateNewRegister(register) {
       .max(50)
       .required(),
     email: Joi.string()
-      .max(50)
-      .required(),
+      .min(6)
+      .max(255)
+      .required()
+      .email(),
     password: Joi.string()
       .min(6)
-      .max(25)
+      .max(1024)
   };
   return Joi.validate(register, schema);
 }
