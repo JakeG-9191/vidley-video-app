@@ -53,13 +53,12 @@ router.delete('/:id', auth, async (req, res) => {
   res.send(customer);
 });
 
-router.get('/:id', async (req, res) => {
-  const customer = await Customer.findById(req.params.id);
+// router.get('/me', auth, async (req, res) => {
+//   const register = await Register.findById(req.register._id).select(
+//     '-password'
+//   );
 
-  if (!customer)
-    return res.status(404).send('This customer does not exist in the system');
-
-  res.send(customer);
-});
+//   res.send(register);
+// });
 
 module.exports = router;

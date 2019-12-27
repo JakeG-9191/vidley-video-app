@@ -1,3 +1,4 @@
+const auth = require('../middleware/auth');
 const _ = require('lodash');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -65,15 +66,10 @@ router.delete('/:id', async (req, res) => {
   res.send(register);
 });
 
-router.get('/:id', async (req, res) => {
-  const register = await Register.findById(req.params.id);
-
-  if (!register)
-    return res
-      .status(404)
-      .send(
-        'There is no valid registration for this id, cannot fulfill request'
-      );
+router.get('/me', auth, async (req, res) => {
+  const register = await Register.findById(req.register._id).select(
+    '-password'
+  );
 
   res.send(register);
 });
