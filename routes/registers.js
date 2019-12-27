@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const bcrypt = require('bcrypt');
 const { Register, validate } = require('../models/register');
 const mongoose = require('mongoose');
 const express = require('express');
@@ -17,6 +18,9 @@ router.post('/', async (req, res) => {
   if (register) return res.status(400).send('This user has already registered');
 
   register = new Register(_.pick(req.body, ['name', 'email', 'password']));
+  const salt = await bcrypt.genSalt(10);
+  register.password = await bcrypt.hash(register.password, salt);
+
   await register.save();
 
   res.send(_.pick(register, ['id', 'name', 'email']));
