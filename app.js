@@ -30,9 +30,6 @@ app.set('view engine', 'pug');
 app.set('views', './views'); // all templates should be in views in this case
 
 // Config
-// console.log(`Application Name: ${config.get('name')}`);
-// console.log(`Mail Server: ${config.get('mail.host')}`);
-// console.log(`Mail Password: ${config.get('mail.password')}`);
 
 // Built In Express Middleware
 app.use(express.json());
