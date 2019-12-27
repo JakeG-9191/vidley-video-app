@@ -53,12 +53,4 @@ router.delete('/:id', auth, async (req, res) => {
   res.send(customer);
 });
 
-// router.get('/me', auth, async (req, res) => {
-//   const register = await Register.findById(req.register._id).select(
-//     '-password'
-//   );
-
-//   res.send(register);
-// });
-
 module.exports = router;

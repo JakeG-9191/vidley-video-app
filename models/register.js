@@ -22,7 +22,8 @@ const registerSchema = new mongoose.Schema({
     required: true,
     minlength: 6,
     maxlength: 1024
-  }
+  },
+  isAdmin: Boolean
 });
 
 registerSchema.methods.generateAuthToken = function() {
