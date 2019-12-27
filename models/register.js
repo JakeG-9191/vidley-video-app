@@ -27,7 +27,10 @@ const registerSchema = new mongoose.Schema({
 });
 
 registerSchema.methods.generateAuthToken = function() {
-  const token = jwt.sign({ _id: this._id }, config.get('jwtPrivate'));
+  const token = jwt.sign(
+    { _id: this._id, isAdmin: this.isAdmin },
+    config.get('jwtPrivate')
+  );
   return token;
 };
 

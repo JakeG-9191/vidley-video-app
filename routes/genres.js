@@ -1,4 +1,5 @@
 const auth = require('../middleware/auth');
+const checkAdmin = require('../middleware/admin');
 const { Genre, validate } = require('../models/genre');
 const mongoose = require('mongoose');
 const express = require('express');
@@ -38,7 +39,7 @@ router.put('/:id', auth, async (req, res) => {
   res.send(genre);
 });
 
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/:id', [auth, checkAdmin], async (req, res) => {
   const genre = await Genre.findByIdAndRemove(req.params.id);
 
   if (!genre)
