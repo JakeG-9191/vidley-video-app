@@ -34,8 +34,7 @@ router.put('/:id', async (req, res) => {
     req.params.id,
     {
       name: req.body.name,
-      email: req.body.email,
-      password: req.body.password
+      email: req.body.email
     },
     {
       new: true

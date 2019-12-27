@@ -5,13 +5,12 @@ const debug = require('debug')('app:startup');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const express = require('express');
-const logger = require('./middleware/logger');
-const auth = require('./middleware/authenticate');
 const genres = require('./routes/genres');
 const movies = require('./routes/movies');
 const rentals = require('./routes/rentals');
 const customers = require('./routes/customers');
 const registers = require('./routes/registers');
+const auth = require('./routes/auth');
 const home = require('./routes/home');
 const mongoose = require('mongoose');
 
@@ -41,6 +40,7 @@ app.use('/api/customers', customers);
 app.use('/api/movies', movies);
 app.use('/api/rentals', rentals);
 app.use('/api/users', registers);
+app.use('/api/auth', auth);
 app.use('/', home);
 
 // 3rd Party Middleware
@@ -49,11 +49,6 @@ if (app.get('env') === 'development') {
   app.use(morgan('tiny'));
   debug('Morgan Enabled...');
 }
-
-// Custom Middleware
-app.use(logger);
-app.use(auth);
-
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
