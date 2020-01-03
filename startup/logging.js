@@ -12,7 +12,7 @@ module.exports = function() {
   });
 
   winston.createLogger({
-    transports: [new winston.transports.File({ filename: 'logfile.log ' })]
+    transports: [new winston.transports.File({ filename: 'myLogs.log' })]
   });
 
   //   winston.add(new winston.transports.MongoDB(options), {
