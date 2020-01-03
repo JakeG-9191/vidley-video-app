@@ -1,3 +1,4 @@
 node_modules/
-myLogs.log
+error.log
+combined.log
 uncaughtExceptions.log
