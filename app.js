@@ -1,5 +1,6 @@
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
+const error = require('./middleware/error');
 const config = require('config');
 const debug = require('debug')('app:startup');
 const helmet = require('helmet');
@@ -51,6 +52,10 @@ if (app.get('env') === 'development') {
   app.use(morgan('tiny'));
   debug('Morgan Enabled...');
 }
+
+// Error Handling
+app.use(error);
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
