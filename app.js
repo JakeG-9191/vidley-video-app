@@ -1,4 +1,6 @@
 require('express-async-errors');
+const winston = require('winston');
+require('winston-mongodb');
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
 const error = require('./middleware/error');
@@ -15,6 +17,12 @@ const registers = require('./routes/registers');
 const auth = require('./routes/auth');
 const home = require('./routes/home');
 const mongoose = require('mongoose');
+
+winston.add(winston.transports.File, { filename: 'logfile.log' });
+winston.add(winston.transports.MongoDB, {
+  db: 'mongodb://localhost/vidley',
+  level: 'warning'
+});
 
 if (!config.get('jwtPrivate')) {
   console.error('FATAL ERROR: jwtPrivate is not defined');
