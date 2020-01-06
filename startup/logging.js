@@ -21,7 +21,7 @@ module.exports = function() {
       new winston.transports.File({ filename: 'error.log', level: 'error' }),
       new winston.transports.File({ filename: 'combined.log' }),
       new winston.transports.MongoDB({
-        db: 'mongodb://localhost/vidley',
+        db: 'mongodb://localhost/vidleyApp',
         level: 'info'
       })
     ]
