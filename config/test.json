@@ -1,3 +1,4 @@
 {
-    "jwtPrivate": "1234"
+    "jwtPrivate": "1234",
+    "db": "mongodb://localhost/vidley_test"
 }

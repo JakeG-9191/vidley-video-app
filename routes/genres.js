@@ -1,5 +1,6 @@
 const auth = require('../middleware/auth');
 const checkAdmin = require('../middleware/admin');
+const validateObjectId = require('../middleware/validateObjectId');
 const { Genre, validate } = require('../models/genre');
 const mongoose = require('mongoose');
 const express = require('express');
@@ -50,7 +51,7 @@ router.delete('/:id', [auth, checkAdmin], async (req, res) => {
   res.send(genre);
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', validateObjectId, async (req, res) => {
   const genre = await Genre.findById(req.params.id);
 
   if (!genre) return res.status(404).send('This genre does not exist');

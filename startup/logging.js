@@ -1,5 +1,5 @@
 const winston = require('winston');
-require('winston-mongodb');
+// require('winston-mongodb');
 require('express-async-errors');
 
 module.exports = function() {
@@ -19,11 +19,11 @@ module.exports = function() {
     transports: [
       new winston.transports.Console({ colorize: true, prettyPrint: true }),
       new winston.transports.File({ filename: 'error.log', level: 'error' }),
-      new winston.transports.File({ filename: 'combined.log' }),
-      new winston.transports.MongoDB({
-        db: 'mongodb://localhost/vidleyApp',
-        level: 'info'
-      })
+      new winston.transports.File({ filename: 'combined.log' })
+      // new winston.transports.MongoDB({
+      //   db: 'mongodb://localhost/vidleyApp',
+      //   level: 'info'
+      // })
     ]
   });
 };
