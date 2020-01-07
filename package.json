@@ -3,11 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "isolatedModules": true
+      }
+    },
+    "testEnvironment": "node"
+  },
   "scripts": {
     "test": "jest --watchAll --verbose --runInBand"
-  },
-  "jest": {
-    "testEnvironment": "node"
   },
   "keywords": [],
   "author": "",
