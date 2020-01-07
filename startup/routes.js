@@ -5,7 +5,6 @@ const rentals = require('../routes/rentals');
 const customers = require('../routes/customers');
 const registers = require('../routes/registers');
 const auth = require('../routes/auth');
-const home = require('../routes/home');
 const error = require('../middleware/error');
 const debug = require('debug')('app:startup');
 const helmet = require('helmet');
@@ -23,7 +22,6 @@ module.exports = function(app) {
   app.use('/api/rentals', rentals);
   app.use('/api/users', registers);
   app.use('/api/auth', auth);
-  app.use('/', home);
 
   // Error Handling
   app.use(error);
