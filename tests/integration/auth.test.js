@@ -1,6 +1,6 @@
-const request = require('supertest');
-const { Genre } = require('../../models/genre');
 const { Register } = require('../../models/register');
+const { Genre } = require('../../models/genre');
+const request = require('supertest');
 
 describe('auth middleware', () => {
   beforeEach(() => {

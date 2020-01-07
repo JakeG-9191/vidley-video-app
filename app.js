@@ -4,15 +4,15 @@ const app = express();
 
 // Start Up
 require('./startup/logging')();
-require('./startup/config');
 require('./startup/routes')(app);
 require('./startup/db')();
-require('./startup/validation');
+require('./startup/config')();
+require('./startup/validation')();
 
 const PORT = process.env.PORT || 3000;
 
-const server = app.listen(PORT, () => {
-  winston.info(`App listening on port ${PORT}...`);
-});
+const server = app.listen(PORT, () =>
+  winston.info(`App listening on port ${PORT}...`)
+);
 
 module.exports = server;

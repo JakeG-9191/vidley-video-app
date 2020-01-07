@@ -3,12 +3,12 @@ const auth = require('../../middleware/auth');
 const mongoose = require('mongoose');
 
 describe('auth middleware', () => {
-  it('should populate req.user with payload of valid JWT', () => {
-    const user = {
+  it('should populate req.register with payload of valid JWT', () => {
+    const register = {
       _id: mongoose.Types.ObjectId().toHexString(),
       isAdmin: true
     };
-    const token = new Register(user).generateAuthToken();
+    const token = new Register(register).generateAuthToken();
     const req = {
       header: jest.fn().mockReturnValue(token)
     };
@@ -17,6 +17,6 @@ describe('auth middleware', () => {
 
     auth(req, res, next);
 
-    expect(req.user).toMatchObject(user);
+    expect(req.register).toMatchObject(register);
   });
 });
