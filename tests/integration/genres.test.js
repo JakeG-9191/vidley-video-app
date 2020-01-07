@@ -3,9 +3,9 @@ const { Genre } = require('../../models/genre');
 const { Register } = require('../../models/register');
 const mongoose = require('mongoose');
 
-let server;
-
 describe('/api/genres', () => {
+  let server;
+
   beforeEach(() => {
     server = require('../../app');
   });
