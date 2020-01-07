@@ -12,7 +12,7 @@ const helmet = require('helmet');
 module.exports = function(app) {
   // Built In Express Middleware
   app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
+  app.use(express.urlencoded({ extended: true, useNewUrlParser: true }));
   app.use(express.static('public'));
 
   // Router

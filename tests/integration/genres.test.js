@@ -30,7 +30,7 @@ describe('/api/genres', () => {
   });
 
   describe('GET /:id', () => {
-    it('should get the genre that matches the id in the paramters if valid', async () => {
+    it('should get the genre that matches the id in the parameters if valid', async () => {
       const genre = new Genre({ name: 'genre1' });
       await genre.save();
 
