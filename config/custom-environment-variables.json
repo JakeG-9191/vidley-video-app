@@ -1,3 +1,4 @@
 {
-    "jwtPrivate": "vidley_jwtPrivate"
+    "jwtPrivate": "vidley_jwtPrivate",
+    "db": "vidley_db"
 }
