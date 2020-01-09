@@ -7,8 +7,6 @@ const registers = require('../routes/registers');
 const auth = require('../routes/auth');
 const returns = require('../routes/returns');
 const error = require('../middleware/error');
-const debug = require('debug')('app:startup');
-const helmet = require('helmet');
 
 module.exports = function(app) {
   // Built In Express Middleware
