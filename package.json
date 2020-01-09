@@ -51,5 +51,8 @@
   "bugs": {
     "url": "https://github.com/JakeG-9191/vidley-video-app/issues"
   },
-  "homepage": "https://github.com/JakeG-9191/vidley-video-app#readme"
+  "homepage": "https://github.com/JakeG-9191/vidley-video-app#readme",
+  "directories": {
+    "test": "tests"
+  }
 }
