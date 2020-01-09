@@ -12,13 +12,18 @@
     "testEnvironment": "node"
   },
   "scripts": {
-    "test": "jest --watchAll --verbose --runInBand"
+    "test": "jest --watchAll --verbose --runInBand",
+    "start": "node app.js"
+  },
+  "engines": {
+    "node": "12.14.0"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^3.0.7",
+    "compression": "^1.7.4",
     "config": "^3.2.4",
     "debug": "^4.1.1",
     "express": "^4.17.1",
