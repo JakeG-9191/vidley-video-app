@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const Joi = require('Joi');
 const { Register } = require('../models/register');
 const mongoose = require('mongoose');
